@@ -1,5 +1,7 @@
 import { PixabayAPI } from './PixabayAPI';
 import createGalleryCards from '../templates/gallery-card.hbs';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const formEl = document.querySelector('#search-form');
 const galleryEl = document.querySelector('.gallery');
