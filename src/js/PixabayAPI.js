@@ -4,11 +4,13 @@ export class PixabayAPI {
 
   query = null;
   page = 1;
-  count = 12;
+  count = 40;
 
   basedSearchParams = {
     key: this.#API_KEY,
     image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: 'true',
     page: this.page,
     per_page: this.count,
   };
