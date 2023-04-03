@@ -22,11 +22,10 @@ const handleSearchFormSubmit = async e => {
   } = e.currentTarget;
 
   pixabayAPI.query = searchQuery.value.trim();
-if (pixabayAPI.query === '') {
+  if (pixabayAPI.query === '') {
+    searchQuery.value = '';
     return;
   }
-
-  searchQuery.value = '';
 
   try {
     const { data } = await pixabayAPI.fetchPhotos();
@@ -35,6 +34,7 @@ if (pixabayAPI.query === '') {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      searchQuery.value = '';
       return;
     }
 
@@ -48,6 +48,8 @@ if (pixabayAPI.query === '') {
   } catch (err) {
     Notify.failure(err);
   }
+
+  searchQuery.value = '';
 };
 
 const handleLoadMoreBtnClick = async () => {
