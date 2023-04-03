@@ -13,19 +13,22 @@ const pixabayAPI = new PixabayAPI();
 const handleSearchFormSubmit = async e => {
   e.preventDefault();
 
-  galleryEl.innerHTML = '';
-  loadMoreBtnEl.classList.add('is-hidden');
-  pixabayAPI.page = 1;
-
   const {
     elements: { searchQuery },
   } = e.currentTarget;
 
   pixabayAPI.query = searchQuery.value.trim();
+
   if (pixabayAPI.query === '') {
     searchQuery.value = '';
+    Notify.info('Please, enter some value to search images...');
     return;
   }
+
+  loadMoreBtnEl.classList.add('is-hidden');
+  pixabayAPI.page = 1;
+
+  galleryEl.innerHTML = '';
 
   try {
     const { data } = await pixabayAPI.fetchPhotos();
