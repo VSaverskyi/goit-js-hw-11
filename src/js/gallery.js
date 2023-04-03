@@ -21,10 +21,10 @@ const handleSearchFormSubmit = async e => {
     elements: { searchQuery },
   } = e.currentTarget;
 
-  if (searchQuery.value === '') {
+  pixabayAPI.query = searchQuery.value.trim();
+if (pixabayAPI.query === '') {
     return;
   }
-  pixabayAPI.query = searchQuery.value.trim();
 
   searchQuery.value = '';
 
