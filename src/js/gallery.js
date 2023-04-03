@@ -68,6 +68,14 @@ const handleLoadMoreBtnClick = async () => {
 
     let gallery = new SimpleLightbox('.gallery a');
     gallery.refresh();
+
+    const { height: cardHeight } =
+      galleryEl.firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
   } catch (err) {
     Notify.failure(err);
   }
