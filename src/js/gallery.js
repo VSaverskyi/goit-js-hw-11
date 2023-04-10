@@ -9,6 +9,7 @@ const galleryEl = document.querySelector('.js-gallery');
 const loadMoreBtnEl = document.querySelector('.js-load-more');
 
 const pixabayAPI = new PixabayAPI();
+let gallery = new SimpleLightbox('.gallery a');
 
 const handleSearchFormSubmit = async e => {
   e.preventDefault();
@@ -43,9 +44,9 @@ const handleSearchFormSubmit = async e => {
 
     galleryEl.innerHTML = createGalleryCards(data.hits);
 
-    Notify.success(`Hooray! We found ${data.totalHits} images.`);
+    gallery.refresh();
 
-    let gallery = new SimpleLightbox('.gallery a');
+    Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
     loadMoreBtnEl.classList.remove('is-hidden');
   } catch (err) {
@@ -69,7 +70,6 @@ const handleLoadMoreBtnClick = async () => {
 
     galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(data.hits));
 
-    let gallery = new SimpleLightbox('.gallery a');
     gallery.refresh();
 
     const { height: cardHeight } =
